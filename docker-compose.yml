@@ -1,0 +1,35 @@
+version: "3"
+services:
+  postgres:
+    container_name: graphql-postgres
+    image: postgres:14
+    ports:
+      - "${DATABASE_PORT}:${DATABASE_PORT}"
+    environment:
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    volumes:
+      - graphql-postgres-data:/var/lib/postgresql/data
+    networks:
+      - postgres-network
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "81:80"
+    depends_on:
+      - postgres
+    networks:
+      - postgres-network
+    volumes:
+      - graphql-pgadmin:/var/lib/pgadmin
+volumes:
+  graphql-postgres-data:
+    driver: local
+  graphql-pgadmin:
+    driver: local
+networks:
+  postgres-network:
+    driver: bridge
