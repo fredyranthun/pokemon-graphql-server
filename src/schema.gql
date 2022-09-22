@@ -50,7 +50,7 @@ input PokemonUpdateInput {
 
 type Query {
   pokemon(id: Int!): Pokemon
-  pokemons: [Pokemon!]!
+  pokemons(page: Int, take: Int): [Pokemon!]!
 }
 
 type Type {

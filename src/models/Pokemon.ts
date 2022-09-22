@@ -1,32 +1,32 @@
-import { Field, ID, ObjectType } from "type-graphql";
-import { PokemonType, Type } from "./Type";
+import { Field, ID, ObjectType } from 'type-graphql'
+import { PokemonType } from './Type'
 
 @ObjectType()
 export class Pokemon {
   @Field((_type) => ID)
-  id: number;
+  id: number
 
   @Field()
-  name: string;
+  name: string
 
   @Field()
-  hp: number;
+  hp: number
 
   @Field()
-  attack: number;
+  attack: number
 
   @Field()
-  defense: number;
+  defense: number
 
   @Field()
-  spAttack: number;
+  spAttack: number
 
   @Field()
-  spDefense: number;
+  spDefense: number
 
   @Field()
-  speed: number;
+  speed: number
 
   @Field((_type) => [PokemonType])
-  types: PokemonType[];
+  types: PokemonType[]
 }
