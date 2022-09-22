@@ -16,7 +16,7 @@ async function main() {
     context,
   })
 
-  const { url } = await server.listen()
+  const { url } = await server.listen({ port: process.env.PORT || 4000 })
 
   console.log(`Server is running, GraphQL Playground available at ${url}`)
 }
